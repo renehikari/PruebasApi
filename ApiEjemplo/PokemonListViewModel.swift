@@ -7,11 +7,11 @@
 
 import Foundation
 
-class Connection : ObservableObject {
+class PokemonListViewModel : ObservableObject {
     @Published var pokemon: Pokemon
     
     init(){
-        self.pokemon = Pokemon(count: -1, next: "" , previous: "" , results: [])
+        self.pokemon = Pokemon(count: -1, siguiente: "" , previous: "" , results: [])
     }
     
     func getPokemonList(){
