@@ -8,9 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject   var pokemonList = PokemonListViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            
+            Text("\(pokemonList.pokemon.count)")
+            Text(pokemonList.pokemon.siguiente)
+            Text(pokemonList.pokemon.previous ?? "")
+            
+            
+            List(){
+                ForEach(pokemonList.pokemon.results, id: \.self){  pokemon in
+                    VStack{
+                        Text(pokemon.name)
+                        Text(pokemon.url)
+                    }
+                }
+            }
+        }
+        .padding()
+        .onAppear(){
+            pokemonList.getPokemonList()
+        }
+        
     }
 }
 
